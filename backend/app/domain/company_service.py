@@ -1,7 +1,7 @@
 from bson import ObjectId
 
-from app.utils.ApiError import ApiError
-from app.utils.db_utils import companies_collection, userselection_collection
+from utils.ApiError import ApiError
+from utils.db_utils import companies_collection, userselection_collection
 
 
 def find_companies(user_id):

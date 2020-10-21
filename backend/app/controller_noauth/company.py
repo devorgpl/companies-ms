@@ -1,6 +1,6 @@
 import logging
 
-from app.domain.company_service import delete_company, find_companies, create_company, update_company
+from domain.company_service import delete_company, find_companies, create_company, update_company
 
 
 def findAll(user_id):

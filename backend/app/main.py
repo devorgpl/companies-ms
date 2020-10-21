@@ -3,7 +3,7 @@ import logging
 import connexion
 from flask_cors import CORS
 
-from app.utils.configurable_resolver import ConfigurableResolver
+from utils.configurable_resolver import ConfigurableResolver
 
 logging.basicConfig(level=logging.DEBUG)
 app = connexion.App(__name__, specification_dir='./')
