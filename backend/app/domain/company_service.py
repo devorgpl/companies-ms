@@ -32,7 +32,6 @@ def find_companies(user_id):
 
 def create_company(company, user_id):
     collection = companies_collection()
-    print(company)
     company_to_store = {
         'name': company.get("name"),
         'address': company.get("address"),
@@ -42,8 +41,6 @@ def create_company(company, user_id):
         "creator": user_id,
     }
     ret = collection.insert_one(company_to_store)
-    print("ret")
-    print(ret)
     return str(ret.inserted_id)
 
 
@@ -57,12 +54,12 @@ def update_company(company, user_id):
     _do_update(company_to_store, user_id, company.get('id'))
 
 
-def delete_company(id, user_id):
+def delete_company(company_id, user_id):
     company_to_store = {'$set': {
         "deleted": True,
     }
     }
-    return _do_update(company_to_store, user_id, id)
+    return _do_update(company_to_store, user_id, company_id)
 
 
 def update_selected_company(company_id, user_id):
