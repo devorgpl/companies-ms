@@ -1,16 +1,17 @@
-# This is a sample Python script.
+import logging
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import connexion
+from flask_cors import CORS
 
+from app.utils.configurable_resolver import ConfigurableResolver
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+logging.basicConfig(level=logging.DEBUG)
+app = connexion.App(__name__, specification_dir='./')
+CORS(app.app)
 
+# todo: add controllers for keycloak, add prefix depends on env parameter
+app.add_api('swagger.yml', resolver=ConfigurableResolver(operation_prefix='controller_noauth.'))
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    app.run(host='0.0.0.0', port=5001, debug=True)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/

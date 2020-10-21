@@ -1,0 +1,102 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger REST company
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+basePath: "/api"
+
+# Paths supported by the server application
+paths:
+  /company/{company_id}:
+    delete:
+      operationId: "company.delete"
+      tags:
+        - "company"
+      summary: "Delete"
+      description: "Delete"
+      parameters:
+        - in: path
+          name: company_id
+          required: true
+          type: string
+          minimum: 1
+          description: The company ID.
+        - in: query
+          name: user_id
+          required: true
+          type: string
+          minimum: 1
+          description: The user ID.
+      responses:
+        200:
+          description: "Success"
+
+  /company:
+    get:
+      operationId: "company.findAll"
+      tags:
+        - "company"
+      summary: "Get companies"
+      description: "Get companies"
+      parameters:
+        - in: query
+          name: user_id
+          required: true
+          type: string
+          minimum: 1
+          description: The user ID.
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            items:
+              properties:
+                company_name:
+                  type: "string"
+    put:
+      operationId: "company.store"
+      tags:
+        - "company"
+      summary: "Store company"
+      description: "Store company"
+      parameters:
+        - in: query
+          name: user_id
+          required: true
+          type: string
+          minimum: 1
+          description: The user ID.
+        - name: company_command
+          in: body
+          description: data
+          required: True
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Username
+                default: None
+              name:
+                type: string
+                description: Password
+              address:
+                type: string
+                description: Password
+              taxId:
+                type: string
+                description: Password
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            items:
+              properties:
+                company_name:
+                  type: "string"

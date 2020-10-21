@@ -6,7 +6,7 @@ from app.utils.db_utils import companies_collection, userselection_collection
 
 def find_companies(user_id):
     selection_collection = userselection_collection()
-    selected_item = selection_collection.find({'user_id': user_id})
+    selected_item = selection_collection.find_one({'user_id': user_id})
     selected = ''
     if selected_item is not None:
         selected = selected_item['company_id']
@@ -73,8 +73,8 @@ def update_selected_company(company_id, user_id):
 
 def find_selected_company(user_id):
     collection = userselection_collection()
-    ret = collection.find({'user_id': user_id})
-    return ret['company_id']
+    ret = collection.find_one({'user_id': user_id})
+    return ret['company_id'] if ret is not None else ""
 
 
 def _do_update(company_to_store, user_id, object_id):
