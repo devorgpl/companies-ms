@@ -15,6 +15,9 @@ def find_companies(user_id):
     ret_result = []
     for x in result:
         company_id = str(x['_id'])
+        if selected_item is None and selected == "":
+            selected = company_id
+            update_selected_company(selected, user_id)
         is_default = company_id == selected
         obj = {
             'id': company_id,
